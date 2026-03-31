@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Calendar, Search } from "lucide-react";
 import { DatePicker } from "@/components/ui/date-picker";
 import { useState } from "react";
+import { DestinationSelect } from "@/components/shared/destination-select";
 
 
 export default function Hero() {
 
   const [arrivalDate, setArrivalDate] = useState<Date>();
   const [departureDate, setDepartureDate] = useState<Date>();
+  const [destination, setDestination] = useState("");
   return (
     <section className="relative h-screen flex flex-col justify-center text-center text-white overflow-hidden">
 
@@ -64,57 +66,46 @@ export default function Hero() {
           {/* Destination */}
           <div className="flex flex-col text-left col-span-2">
             <span className="text-xs text-white/60 mb-1">DESTINATION</span>
-            <div className="flex items-center gap-2 h-[42px] border border-white/20 rounded-lg px-3 py-2">
-              <MapPin size={16} />
-              <input
-                type="text"
-                placeholder="Where to?"
-                className="bg-transparent outline-none text-sm w-full"
-              />
-            </div>
+
+            <DestinationSelect
+              value={destination}
+              setValue={setDestination}
+            />
           </div>
 
-{/* Arrival */}
-<div className="flex flex-col text-left">
-  <span className="text-xs text-white/60 mb-1">ARRIVAL DATE</span>
-  <DatePicker date={arrivalDate} setDate={setArrivalDate} />
-</div>
+          {/* Arrival */}
+          <div className="flex flex-col text-left">
+            <span className="text-xs text-white/60 mb-1">ARRIVAL DATE</span>
+            <DatePicker date={arrivalDate} setDate={setArrivalDate} />
+          </div>
 
-{/* Departure */}
-<div className="flex flex-col text-left">
-  <span className="text-xs text-white/60 mb-1">DEPARTURE DATE</span>
-  <DatePicker date={departureDate} setDate={setDepartureDate} />
-</div>
+          {/* Departure */}
+          <div className="flex flex-col text-left">
+            <span className="text-xs text-white/60 mb-1">DEPARTURE DATE</span>
+            <DatePicker date={departureDate} setDate={setDepartureDate} />
+          </div>
 
           {/* Adults */}
           <div className="flex flex-col text-left">
             <span className="text-xs text-white/60 mb-1">ADULTS</span>
-            <input type="number" defaultValue={2} className="bg-transparent border h-[42px] border-white/20 rounded-lg px-3 py-2 text-sm" />
+            <input type="number" defaultValue={2} className="bg-transparent border h-10.5 border-white/20 rounded-lg px-3 py-2 text-sm" />
           </div>
 
           {/* Children */}
           <div className="flex flex-col text-left">
             <span className="text-xs text-white/60 mb-1">CHILDREN</span>
-            <input type="number" defaultValue={0} className="bg-transparent h-[42px] border border-white/20 rounded-lg px-3 py-2 text-sm" />
+            <input type="number" defaultValue={0} className="bg-transparent h-10.5 border border-white/20 rounded-lg px-3 py-2 text-sm" />
           </div>
 
           {/* ✅ Button now inline */}
           <div className="flex">
-            <Button className="w-full h-[42px] bg-green-500 hover:bg-green-600 flex items-center justify-center gap-2">
+            <Button className="w-full h-10.5 bg-green-500 hover:bg-green-600 flex items-center justify-center gap-2">
               <Search size={16} />
               Find Tours
             </Button>
           </div>
 
         </div>
-      </div>
-
-      {/* 🔥 STATS */}
-      <div className="relative z-10 mt-6 flex justify-center gap-8 text-sm text-white/80">
-        <span>🌍 120+ Destinations</span>
-        <span>👥 45K+ Travelers</span>
-        <span>⭐ 4.9 Rating</span>
-        <span>🏆 15+ Awards</span>
       </div>
 
     </section>
