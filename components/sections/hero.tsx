@@ -5,6 +5,7 @@ import { MapPin, Calendar, Search } from "lucide-react";
 import { DatePicker } from "@/components/ui/date-picker";
 import { useState } from "react";
 import { DestinationSelect } from "@/components/shared/destination-select";
+import { useRouter } from "next/navigation";
 
 
 export default function Hero() {
@@ -12,6 +13,18 @@ export default function Hero() {
   const [arrivalDate, setArrivalDate] = useState<Date>();
   const [departureDate, setDepartureDate] = useState<Date>();
   const [destination, setDestination] = useState("");
+  const router = useRouter();
+  const handleSearch = () => {
+    const params = new URLSearchParams({
+      destination,
+      arrival: arrivalDate?.toISOString() || "",
+      departure: departureDate?.toISOString() || "",
+      adults: "2",
+      children: "0",
+    });
+
+    router.push(`/tours?${params.toString()}`);
+  };
   return (
     <section className="relative h-screen flex flex-col justify-center text-center text-white overflow-hidden">
 
@@ -99,10 +112,13 @@ export default function Hero() {
 
           {/* ✅ Button now inline */}
           <div className="flex">
-            <Button className="w-full h-10.5 bg-green-500 hover:bg-green-600 flex items-center justify-center gap-2">
-              <Search size={16} />
-              Find Tours
-            </Button>
+<Button
+  onClick={handleSearch}
+  className="w-full h-10.5 bg-green-500 hover:bg-green-600 flex items-center justify-center gap-2"
+>
+  <Search size={16} />
+  Find Tours
+</Button>
           </div>
 
         </div>
