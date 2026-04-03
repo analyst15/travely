@@ -19,18 +19,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const destinations = [
-  "Paris",
-  "Dubai",
-  "Bali",
-  "New York",
-  "Cape Town",
-  "Zanzibar",
-  "Tokyo",
-  "London",
-  "Rome",
-];
-
 export function DestinationSelect({
   value,
   setValue,
@@ -39,6 +27,26 @@ export function DestinationSelect({
   setValue: (value: string) => void;
 }) {
   const [open, setOpen] = React.useState(false);
+  const [destinations, setDestinations] = React.useState<string[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  // 🔥 Fetch from API
+  React.useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const res = await fetch("/api/destinations");
+        const data = await res.json();
+
+        setDestinations(data.map((d: any) => d.destination));
+      } catch (error) {
+        console.error("Failed to fetch destinations:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDestinations();
+  }, []);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -59,28 +67,37 @@ export function DestinationSelect({
       <PopoverContent className="w-full p-0 bg-white text-black">
         <Command>
           <CommandInput placeholder="Search destination..." />
-          <CommandEmpty>No destination found.</CommandEmpty>
 
-          <CommandGroup>
-            {destinations.map((destination) => (
-              <CommandItem
-                key={destination}
-                value={destination}
-                onSelect={(currentValue) => {
-                  setValue(currentValue);
-                  setOpen(false);
-                }}
-              >
-                {destination}
-                <Check
-                  className={cn(
-                    "ml-auto h-4 w-4",
-                    value === destination ? "opacity-100" : "opacity-0"
-                  )}
-                />
-              </CommandItem>
-            ))}
-          </CommandGroup>
+          {loading ? (
+            <div className="p-3 text-sm text-gray-500">
+              Loading destinations...
+            </div>
+          ) : (
+            <>
+              <CommandEmpty>No destination found.</CommandEmpty>
+
+              <CommandGroup>
+                {destinations.map((destination) => (
+                  <CommandItem
+                    key={destination}
+                    value={destination}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    {destination}
+                    <Check
+                      className={cn(
+                        "ml-auto h-4 w-4",
+                        value === destination ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
+          )}
         </Command>
       </PopoverContent>
     </Popover>
