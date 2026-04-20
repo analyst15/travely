@@ -7,6 +7,7 @@ import Hero from "@/components/sections/hero";
 import Testimonials from "@/components/sections/testimonials";
 import FeaturedToursSection from "@/components/sections/tours/FeaturedToursSection";
 import WhyChooseUs from "@/components/sections/why-choose-us";
+import { OurPurpose } from "@/components/sections/our-purpose";
 import Image from "next/image";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <FeaturedToursSection />
       <Testimonials />
       <CTASection />
+      <OurPurpose />
     </main>
   );
 }
