@@ -9,6 +9,7 @@ import FeaturedToursSection from "@/components/sections/tours/FeaturedToursSecti
 import WhyChooseUs from "@/components/sections/why-choose-us";
 import { OurPurpose } from "@/components/sections/our-purpose";
 import Image from "next/image";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <Testimonials />
       <CTASection />
       <OurPurpose />
+      <Footer />
     </main>
   );
 }
