@@ -14,7 +14,6 @@ import Footer from "@/components/footer";
 export default function Home() {
   return (
     <main>
-      <Navbar />
       <Hero />
       <About />
       <WhyChooseUs />
@@ -24,7 +23,6 @@ export default function Home() {
       <Testimonials />
       <CTASection />
       <OurPurpose />
-      <Footer />
     </main>
   );
 }
