@@ -69,9 +69,9 @@ export default function Footer() {
         <p>
           © Copyright <span className="font-semibold text-white">Travely</span> All Rights Reserved
         </p>
-        <p className="mt-1">
+        {/* <p className="mt-1">
           Designed by <span className="text-teal-400">BootstrapMade</span>
-        </p>
+        </p> */}
       </div>
     </footer>
   )
