@@ -48,7 +48,7 @@ export default function Navbar() {
                 <nav className="hidden md:flex items-center gap-8 text-sm text-white/80">
 
                     <Link href="#" className="text-green-400">Home</Link>
-                    <Link href="#">About</Link>
+                    <Link href="/about">About</Link>
                     <Link href="#">Destinations</Link>
                     <Link href="#">Tours</Link>
                     <Link href="#">Gallery</Link>
