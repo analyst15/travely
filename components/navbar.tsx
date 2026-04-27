@@ -49,7 +49,7 @@ export default function Navbar() {
 
                     <Link href="#" className="text-green-400">Home</Link>
                     <Link href="/about">About</Link>
-                    <Link href="#">Destinations</Link>
+                    <Link href="/destinations">Destinations</Link>
                     <Link href="#">Tours</Link>
                     <Link href="#">Gallery</Link>
                     <Link href="#">Blog</Link>
