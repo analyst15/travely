@@ -1,4 +1,5 @@
 import { FeaturedTour } from "@/components/tours/featured-tour";
+import { ThemeSection } from "@/components/tours/theme-section";
 import ToursPage from "@/components/tours/tours";
 import Image from "next/image";
 
@@ -35,6 +36,7 @@ export default function AboutPage() {
                 <ToursPage />
             </section>
             <FeaturedTour />
+            <ThemeSection />
         </div>
     )
 }
